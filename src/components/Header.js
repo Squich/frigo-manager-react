@@ -8,7 +8,7 @@ const Header = () => {
                     className="font-weight-light text-uppercase text-center mb-0" 
                     style={{fontSize:"2rem"}}
                 >
-                    <a className="text-light" href="/">Frigo Manager</a>
+                    <a className="text-light" href="/frigo-manager-react/">Frigo Manager</a>
                 </h1>
             </div>
         </header>

@@ -33,7 +33,7 @@ const Signup = props => {
         })
         .then(() => {
             setLoginData({...data});
-            props.history.push("/welcome");
+            props.history.push("/frigo-manager-react/welcome");
         })
         .catch(error => {
             setError(error);
@@ -46,7 +46,7 @@ const Signup = props => {
         ? <button type="submit" className="btn btn-primary" disabled>Inscription</button>
         : <button type="submit" className="btn btn-primary">Inscription</button>
 
-    const errorMsg = !error && <div className="alert alert-danger mb-4" role="alert">{error.message}</div>;
+    const errorMsg = error && <div className="alert alert-danger mb-4" role="alert">{error.message}</div>;
 
     return (
         <Fragment>
@@ -72,7 +72,7 @@ const Signup = props => {
                 {btn}
             </form>
             <div className="mt-5">
-                <Link to="/login">Déjà inscrit ? Connectez-vous.</Link>
+                <Link to="/frigo-manager-react/login">Déjà inscrit ? Connectez-vous.</Link>
             </div>
         </Fragment>
     )

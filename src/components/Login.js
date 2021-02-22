@@ -23,7 +23,7 @@ const Login = props => {
         firebase.loginUser(email, password)
         .then(() => {
             setLoginData({...data});
-            props.history.push("/welcome");
+            props.history.push("/frigo-manager-react/welcome");
         })
         .catch(error => {
             setError(error);
@@ -54,10 +54,10 @@ const Login = props => {
                 {btn}
             </form>
             <div className="mt-5">
-                <Link to="/signup">Pas encore de compte ? Inscrivez-vous.</Link>
+                <Link to="/frigo-manager-react/signup">Pas encore de compte ? Inscrivez-vous.</Link>
             </div>
             <div>
-                <Link to="/forgetpassword">Mot de passe oublié ? Récupérez-le.</Link>
+                <Link to="/frigo-manager-react/forgetpassword">Mot de passe oublié ? Récupérez-le.</Link>
             </div>
         </Fragment>
     )

@@ -17,7 +17,7 @@ const ForgetPassword = props => {
             setEmail("");
             setError(null);
             setSuccess(`Consultez votre email ${email} pour changer le mot de passe.`);
-            setTimeout(() => props.history.push("/login"), 5000);
+            setTimeout(() => props.history.push("/frigo-manager-react/login"), 5000);
         })
         .catch(error => {
             setEmail("");
@@ -42,7 +42,7 @@ const ForgetPassword = props => {
                 <button type="submit" className="btn btn-primary" disabled={disabled}>Récupérer</button>
             </form>
             <div className="mt-5">
-                <Link to="/login">Déjà inscrit ? Connectez-vous.</Link>
+                <Link to="/frigo-manager-react/login">Déjà inscrit ? Connectez-vous.</Link>
             </div>
         </div>
     )
