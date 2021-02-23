@@ -16,7 +16,7 @@ toast.configure({
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
-    draggable: false,
+    draggable: false
 });
 
 const Welcome = props => {

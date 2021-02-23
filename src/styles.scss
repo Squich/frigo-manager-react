@@ -1,0 +1,75 @@
+// Override default variables before the import
+$body-bg: #f8f9fa;
+$font-size-base: 1rem;
+$h1-font-size: $font-size-base * 1.75;
+$h2-font-size: $font-size-base * 1.75;
+$list-group-item-padding-x: 0.25rem;
+$paragraph-margin-bottom: 0;
+$headings-margin-bottom: 0;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+
+html {
+    font-size: .8rem;
+  }
+  
+  @include media-breakpoint-up(sm) {
+    html {
+      font-size: .9rem;
+    }
+  }
+  
+  @include media-breakpoint-up(md) {
+    html {
+      font-size: 1rem;
+    }
+  }
+  
+  @include media-breakpoint-up(lg) {
+    html {
+      font-size: 1.1rem;
+    }
+  }
+
+// Custom Toastify
+
+.Toastify__toast-container {
+    width: auto;
+    max-width: 400px;
+}
+
+.Toastify__toast {
+    padding-left: 15px;
+    padding-right: 35px;
+}
+
+.Toastify__close-button {
+    position: absolute;
+    top: 0px;
+    right: 7px;
+}
+
+.Toastify__toast-body {
+  font-size: .9rem;
+}
+
+@media only screen and (max-width: 480px) {
+
+  .Toastify__toast-container {
+    width: auto;
+    padding: 4px;
+    left: auto;
+    margin: 0;
+  }
+
+  .Toastify__toast-body {
+    font-size: 1rem;
+  }
+
+  .Toastify__toast-container--top-right {
+    top: .5em;
+    right: .5em;
+  }
+
+}
