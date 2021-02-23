@@ -8,7 +8,6 @@ import ErrorPage from './ErrorPage';
 import ForgetPassword from './ForgetPassword';
 import Footer from './Footer';
 import { IconContext } from "react-icons";
-import '../App.css';
 
 const App = () => {
   return (

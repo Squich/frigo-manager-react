@@ -1,0 +1,12 @@
+// Override default variables before the import
+$body-bg: #f8f9fa;
+$enable-responsive-font-sizes: true;
+$font-size-base: .8rem;
+$font-size-sm: $font-size-base * .5;
+$spacer: .8rem;
+$list-group-item-padding-x: 0.25rem;
+$paragraph-margin-bottom: 0;
+$headings-margin-bottom: 0;
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';

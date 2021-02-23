@@ -5,16 +5,16 @@ const Landing = () => {
     return (
         <Fragment>
             <div className="text-center mb-3">
-                <Link to="/frigo-manager-react/signup">
-                    <button type="button" className="btn btn-light">
-                        Inscription
+                <Link to="/frigo-manager-react/login">
+                    <button type="button" className="btn btn-primary">
+                        Connexion
                     </button>
                 </Link>
             </div>
             <div className="text-center">
-                <Link to="/frigo-manager-react/login">
+                <Link to="/frigo-manager-react/signup">
                     <button type="button" className="btn btn-light">
-                        Connexion
+                        Inscription
                     </button>
                 </Link>
             </div>
