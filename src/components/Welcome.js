@@ -169,7 +169,7 @@ const Welcome = props => {
         userSession 
         ?
         <Fragment>
-            <Logout />
+            <Logout userData={userData}/>
             {
                 form 
                 ?
