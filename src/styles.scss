@@ -177,6 +177,49 @@ html {
 
 // My classes
 
+.entete {
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 1.5rem;
+}
+
+.bg-entete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 100%;
+  z-index: -1;
+  background-color: $primary;
+  background-image: url(./images/entete.jpg);
+  background-repeat: repeat;
+  background-size: 30%;
+  animation: defilement 120s linear infinite;
+}
+
+@include media-breakpoint-up(sm) {
+  .bg-entete {
+    background-size: 13%;
+  }
+}
+
+@keyframes defilement{
+  0%{transform: translate(0,0);}
+  100%{transform: translate(-75%,0);}
+}
+
 .pointer, .pointer * {
   cursor: pointer;
+}
+
+.py-5-responsive {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+@include media-breakpoint-up(sm) {
+  .py-5-responsive {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
 }

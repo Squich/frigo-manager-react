@@ -11,7 +11,7 @@ import { IconContext } from "react-icons";
 
 const App = () => {
   return (
-    <div className="container py-5">
+    <div className="container py-5-responsive">
       <div className="shadow rounded-lg overflow-hidden">
         <IconContext.Provider value={{style:{verticalAlign:'middle'}}}>
               <Header />
