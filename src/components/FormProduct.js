@@ -55,13 +55,15 @@ const FormProduct = ({id, name, date, recipe, opened, addProduct, modifyProduct,
                 </div>
                 <div className="mb-4">
                     <p style={{display: "inline-block", marginBottom: ".5rem"}}>Entamé</p>
-                    <div className="form-check">
-                        <input className="form-check-input" onChange={handleChange} value="true" type="radio" name="opened" id="opened" checked={currentOpened === "true" && true} />
-                        <label className="form-check-label" htmlFor="opened">Oui</label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" onChange={handleChange} value="false" type="radio" name="opened" id="closed" checked={currentOpened === "false" && true} />
-                        <label className="form-check-label" htmlFor="closed">Non</label>
+                    <div className="d-flex justify-content-start">
+                        <div className="mr-4">
+                            <input className="mr-2" onChange={handleChange} value="true" type="radio" name="opened" id="opened" checked={currentOpened === "true" && true} />
+                            <label className="form-check-label" htmlFor="opened">Oui</label>
+                        </div>
+                        <div>
+                            <input className="mr-2" onChange={handleChange} value="false" type="radio" name="opened" id="closed" checked={currentOpened === "false" && true} />
+                            <label className="form-check-label" htmlFor="closed">Non</label>
+                        </div>
                     </div>
                 </div>
                 {buttons}
