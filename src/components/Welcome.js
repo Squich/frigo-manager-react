@@ -8,7 +8,7 @@ import TodayDate from './TodayDate';
 import Product from './Product';
 import Loader from './Loader';
 import { FiPlus } from "react-icons/fi";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt, FaCheck, FaTimes } from "react-icons/fa";
 
 toast.configure({
     position: "top-right",
@@ -33,6 +33,7 @@ const Welcome = props => {
     const [formValues, setFormValues] = useState(initialFormValues);
     const [idProduct, setIdProduct] = useState(1);
     const [idProductToModified, setIdProductToModified] = useState(null);
+    const [alert, setAlert] = useState(false);
 
     const {name, date, recipe, opened} = formValues;
 
@@ -108,15 +109,40 @@ const Welcome = props => {
     }
 
     const deleteAllProducts = () => {
-        if (window.confirm("Supprimer tous les produits ?")) {
-            setListProducts([]);   
+            setListProducts([]);
+            setAlert(false); 
             toast.success("Suppression de toute la liste");      
-        }   
     }
+
+    const alertMsg = 
+        alert && 
+        <div className="alert alert-danger mb-4" role="alert">
+            <p className="h5 text-center mb-3">Supprimer tous les produits ?</p>
+            <div className="row text-center">
+                <div className="col">
+                    <button 
+                        type="button" 
+                        className="btn btn-success btn-block" 
+                        onClick={() => deleteAllProducts()}
+                    >
+                        <FaCheck /> Oui
+                    </button>
+                </div>
+                <div className="col">
+                    <button 
+                        type="button" 
+                        className="btn btn-danger btn-block" 
+                        onClick={() => setAlert(false)}
+                    >
+                        <FaTimes /> Non
+                    </button>
+                </div>
+            </div>
+        </div>;
 
     const buttons = 
         <div className="row">
-            <div className="col-6 col-sm-8">
+            <div className="col-6 col-sm-8 pr-2">
                 <button 
                     type="button" 
                     className="btn btn-primary btn-block text-nowrap" 
@@ -125,11 +151,11 @@ const Welcome = props => {
                     <FiPlus /> Ajouter
                 </button>
             </div>
-            <div className="col-6 col-sm-4 pl-0">
+            <div className="col-6 col-sm-4 pl-2">
                 <button 
                     type="button" 
                     className="btn btn-outline-secondary btn-block text-nowrap" 
-                    onClick={deleteAllProducts} 
+                    onClick={() => setAlert(true)} 
                     disabled={!listProducts.length}
                 >
                     <FaRegTrashAlt /> Tout effacer
@@ -170,6 +196,7 @@ const Welcome = props => {
         ?
         <Fragment>
             <Logout userData={userData}/>
+            {alertMsg}
             {
                 form 
                 ?

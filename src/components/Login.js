@@ -49,7 +49,7 @@ const Login = props => {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="password">Mot de passe</label>
-                    <input className="form-control" onChange={handleChange} value={password} type="password" id="password" autoComplete="on" required />
+                    <input className="form-control" onChange={handleChange} value={password} type="password" id="password" autoComplete="off" required />
                 </div>
                 {btn}
             </form>

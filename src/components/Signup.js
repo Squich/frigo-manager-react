@@ -55,19 +55,19 @@ const Signup = props => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="pseudo">Pseudo</label>
-                    <input className="form-control" onChange={handleChange} value={pseudo} type="text" id="pseudo" autoComplete="on" required />
+                    <input className="form-control" onChange={handleChange} value={pseudo} type="text" id="pseudo" autoComplete="off" required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input className="form-control" onChange={handleChange} value={email} type="email" id="email" autoComplete="on" required />
+                    <input className="form-control" onChange={handleChange} value={email} type="email" id="email" autoComplete="off" required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Mot de passe</label>
-                    <input className="form-control" onChange={handleChange} value={password} type="password" id="password" autoComplete="on" required />
+                    <input className="form-control" onChange={handleChange} value={password} type="password" id="password" autoComplete="off" required />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
-                    <input className="form-control" onChange={handleChange} value={confirmPassword} type="password" id="confirmPassword" autoComplete="on" required />
+                    <input className="form-control" onChange={handleChange} value={confirmPassword} type="password" id="confirmPassword" autoComplete="off" required />
                 </div>
                 {btn}
             </form>

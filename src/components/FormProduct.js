@@ -10,7 +10,9 @@ const FormProduct = ({id, name, date, recipe, opened, addProduct, modifyProduct,
     const {name: currentName, date: currentDate, recipe: currentRecipe, opened: currentOpened} = formValues;
 
     const handleChange = e => {
-        setFormValues({...formValues, [e.target.id]: e.target.value})
+        e.target.type !== "radio"
+        ? setFormValues({...formValues, [e.target.id]: e.target.value})
+        : setFormValues({...formValues, opened: e.target.value})
     }
 
     const handleSubmit = e => {
@@ -26,14 +28,14 @@ const FormProduct = ({id, name, date, recipe, opened, addProduct, modifyProduct,
         : <h2 className="mb-4">Ajouter un produit</h2>
     
     const buttons = 
-    <Fragment>
+    <div className="d-flex justify-content-between">
         {
             id
             ? <button type="submit" className="btn btn-primary"><FaPencilAlt /> Modifier</button>
             : <button type="submit" className="btn btn-primary"><FiPlus /> Ajouter</button>
         }
         <button type="button" className="btn btn-outline-secondary ml-2" onClick={hideForm}><CgClose /> Annuler</button>        
-    </Fragment>
+    </div>
 
     return (
         <Fragment>
@@ -41,7 +43,7 @@ const FormProduct = ({id, name, date, recipe, opened, addProduct, modifyProduct,
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Nom</label>
-                    <input className="form-control" onChange={handleChange} value={currentName} type="text" id="name" autoComplete="on" maxLength="20" placeholder="Nom du produit" required />
+                    <input className="form-control" onChange={handleChange} value={currentName} type="text" id="name" autoComplete="off" maxLength="20" placeholder="Nom du produit" required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="date">DLC</label>
@@ -49,14 +51,18 @@ const FormProduct = ({id, name, date, recipe, opened, addProduct, modifyProduct,
                 </div>
                 <div className="form-group">
                     <label htmlFor="recipe">Recette</label>
-                    <input className="form-control" onChange={handleChange} value={currentRecipe} type="text" id="recipe" autoComplete="on" maxLength="20" placeholder="Nom de la recette" />
+                    <input className="form-control" onChange={handleChange} value={currentRecipe} type="text" id="recipe" autoComplete="off" maxLength="20" placeholder="Nom de la recette" />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="opened">Entamé</label>
-                    <select className="form-control" onChange={handleChange} id="opened" value={currentOpened}>
-                        <option value="true">Oui</option>
-                        <option value="false">Non</option>
-                    </select>
+                    <p style={{display: "inline-block", marginBottom: ".5rem"}}>Entamé</p>
+                    <div className="form-check">
+                        <input className="form-check-input" onChange={handleChange} value="true" type="radio" name="opened" id="opened" checked={currentOpened === "true" && true} />
+                        <label className="form-check-label" htmlFor="opened">Oui</label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" onChange={handleChange} value="false" type="radio" name="opened" id="closed" checked={currentOpened === "false" && true} />
+                        <label className="form-check-label" htmlFor="closed">Non</label>
+                    </div>
                 </div>
                 {buttons}
             </form>            
