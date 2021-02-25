@@ -33,7 +33,7 @@ const Signup = props => {
         })
         .then(() => {
             setLoginData({...data});
-            props.history.push("/frigo-manager-react/welcome");
+            props.history.push("/welcome");
         })
         .catch(error => {
             setError(error);
@@ -72,7 +72,7 @@ const Signup = props => {
                 {btn}
             </form>
             <div className="mt-5">
-                <Link to="/frigo-manager-react/login">Déjà inscrit ? Connectez-vous.</Link>
+                <Link to="/login">Déjà inscrit ? Connectez-vous.</Link>
             </div>
         </Fragment>
     )

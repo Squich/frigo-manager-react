@@ -19,11 +19,11 @@ const App = () => {
                 <div className="col">
                   <Router>
                     <Switch>
-                      <Route exact path="/frigo-manager-react/" component={Landing} />
-                      <Route path="/frigo-manager-react/welcome" component={Welcome} />
-                      <Route path="/frigo-manager-react/login" component={Login} />
-                      <Route path="/frigo-manager-react/signup" component={Signup} />
-                      <Route path="/frigo-manager-react/forgetpassword" component={ForgetPassword} />
+                      <Route exact path="/" component={Landing} />
+                      <Route path="/welcome" component={Welcome} />
+                      <Route path="/login" component={Login} />
+                      <Route path="/signup" component={Signup} />
+                      <Route path="/forgetpassword" component={ForgetPassword} />
                       <Route component={ErrorPage} />          
                     </Switch>
                   </Router>        

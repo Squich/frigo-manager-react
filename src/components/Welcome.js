@@ -38,7 +38,7 @@ const Welcome = props => {
     const {name, date, recipe, opened} = formValues;
 
     useEffect(() => {
-        let listener = firebase.auth.onAuthStateChanged(user => user ? setUserSession(user) : props.history.push("/frigo-manager-react/"));
+        let listener = firebase.auth.onAuthStateChanged(user => user ? setUserSession(user) : props.history.push("/"));
         if (userSession) {
             firebase.user(userSession.uid)
             .get()

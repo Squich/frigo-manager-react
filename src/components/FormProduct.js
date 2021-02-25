@@ -53,7 +53,7 @@ const FormProduct = ({id, name, date, recipe, opened, addProduct, modifyProduct,
                     <label htmlFor="recipe">Recette</label>
                     <input className="form-control" onChange={handleChange} value={currentRecipe} type="text" id="recipe" autoComplete="off" maxLength="20" placeholder="Nom de la recette" />
                 </div>
-                <div className="mb-5">
+                <div className="mb-4">
                     <p style={{display: "inline-block", marginBottom: ".5rem"}}>Entamé</p>
                     <div className="d-flex justify-content-start">
                         <div className="mr-4">

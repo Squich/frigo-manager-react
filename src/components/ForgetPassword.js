@@ -17,7 +17,7 @@ const ForgetPassword = props => {
             setEmail("");
             setError(null);
             setSuccess(`Consultez votre email ${email} pour changer le mot de passe.`);
-            setTimeout(() => props.history.push("/frigo-manager-react/login"), 5000);
+            setTimeout(() => props.history.push("/login"), 5000);
         })
         .catch(error => {
             setEmail("");
@@ -37,12 +37,12 @@ const ForgetPassword = props => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label htmlFor="email">Email</label>
-                    <input className="form-control" onChange={e => setEmail(e.target.value)} value={email} type="email" id="email" autoComplete="on" required />
+                    <input className="form-control" onChange={e => setEmail(e.target.value)} value={email} type="email" id="email" autoComplete="off" required />
                 </div>
                 <button type="submit" className="btn btn-primary" disabled={disabled}>Récupérer</button>
             </form>
             <div className="mt-5">
-                <Link to="/frigo-manager-react/login">Déjà inscrit ? Connectez-vous.</Link>
+                <Link to="/login">Déjà inscrit ? Connectez-vous.</Link>
             </div>
         </div>
     )

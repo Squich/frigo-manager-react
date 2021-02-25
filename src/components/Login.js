@@ -23,7 +23,7 @@ const Login = props => {
         firebase.loginUser(email, password)
         .then(() => {
             setLoginData({...data});
-            props.history.push("/frigo-manager-react/welcome");
+            props.history.push("/welcome");
         })
         .catch(error => {
             setError(error);
@@ -45,7 +45,7 @@ const Login = props => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input className="form-control" onChange={handleChange} value={email} type="email" id="email" autoComplete="on" required />
+                    <input className="form-control" onChange={handleChange} value={email} type="email" id="email" autoComplete="off" required />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="password">Mot de passe</label>
@@ -54,10 +54,10 @@ const Login = props => {
                 {btn}
             </form>
             <div className="mt-5">
-                <Link to="/frigo-manager-react/signup">Pas encore de compte ? Inscrivez-vous.</Link>
+                <Link to="/signup">Pas encore de compte ? Inscrivez-vous.</Link>
             </div>
             <div>
-                <Link to="/frigo-manager-react/forgetpassword">Mot de passe oublié ? Récupérez-le.</Link>
+                <Link to="/forgetpassword">Mot de passe oublié ? Récupérez-le.</Link>
             </div>
         </Fragment>
     )
