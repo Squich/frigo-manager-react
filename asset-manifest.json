@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/frigo-manager-react/static/css/main.4dfb7e07.chunk.css",
-    "main.js": "/frigo-manager-react/static/js/main.bd2b5f52.chunk.js",
-    "main.js.map": "/frigo-manager-react/static/js/main.bd2b5f52.chunk.js.map",
-    "runtime-main.js": "/frigo-manager-react/static/js/runtime-main.74f4d315.js",
-    "runtime-main.js.map": "/frigo-manager-react/static/js/runtime-main.74f4d315.js.map",
-    "static/css/2.82a37e40.chunk.css": "/frigo-manager-react/static/css/2.82a37e40.chunk.css",
-    "static/js/2.4a8b5c4a.chunk.js": "/frigo-manager-react/static/js/2.4a8b5c4a.chunk.js",
-    "static/js/2.4a8b5c4a.chunk.js.map": "/frigo-manager-react/static/js/2.4a8b5c4a.chunk.js.map",
-    "static/js/3.750f0373.chunk.js": "/frigo-manager-react/static/js/3.750f0373.chunk.js",
-    "static/js/3.750f0373.chunk.js.map": "/frigo-manager-react/static/js/3.750f0373.chunk.js.map",
-    "index.html": "/frigo-manager-react/index.html",
-    "static/css/2.82a37e40.chunk.css.map": "/frigo-manager-react/static/css/2.82a37e40.chunk.css.map",
-    "static/css/main.4dfb7e07.chunk.css.map": "/frigo-manager-react/static/css/main.4dfb7e07.chunk.css.map",
-    "static/js/2.4a8b5c4a.chunk.js.LICENSE.txt": "/frigo-manager-react/static/js/2.4a8b5c4a.chunk.js.LICENSE.txt",
-    "static/media/styles.scss": "/frigo-manager-react/static/media/entete.57bc0155.jpg"
+    "main.css": "https://squich.github.io/frigo-manager-react/static/css/main.a654adbf.chunk.css",
+    "main.js": "https://squich.github.io/frigo-manager-react/static/js/main.464000b9.chunk.js",
+    "main.js.map": "https://squich.github.io/frigo-manager-react/static/js/main.464000b9.chunk.js.map",
+    "runtime-main.js": "https://squich.github.io/frigo-manager-react/static/js/runtime-main.a30d7b09.js",
+    "runtime-main.js.map": "https://squich.github.io/frigo-manager-react/static/js/runtime-main.a30d7b09.js.map",
+    "static/css/2.82a37e40.chunk.css": "https://squich.github.io/frigo-manager-react/static/css/2.82a37e40.chunk.css",
+    "static/js/2.07c5731e.chunk.js": "https://squich.github.io/frigo-manager-react/static/js/2.07c5731e.chunk.js",
+    "static/js/2.07c5731e.chunk.js.map": "https://squich.github.io/frigo-manager-react/static/js/2.07c5731e.chunk.js.map",
+    "static/js/3.750f0373.chunk.js": "https://squich.github.io/frigo-manager-react/static/js/3.750f0373.chunk.js",
+    "static/js/3.750f0373.chunk.js.map": "https://squich.github.io/frigo-manager-react/static/js/3.750f0373.chunk.js.map",
+    "index.html": "https://squich.github.io/frigo-manager-react/index.html",
+    "static/css/2.82a37e40.chunk.css.map": "https://squich.github.io/frigo-manager-react/static/css/2.82a37e40.chunk.css.map",
+    "static/css/main.a654adbf.chunk.css.map": "https://squich.github.io/frigo-manager-react/static/css/main.a654adbf.chunk.css.map",
+    "static/js/2.07c5731e.chunk.js.LICENSE.txt": "https://squich.github.io/frigo-manager-react/static/js/2.07c5731e.chunk.js.LICENSE.txt",
+    "static/media/styles.scss": "https://squich.github.io/frigo-manager-react/static/media/entete.57bc0155.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.74f4d315.js",
+    "static/js/runtime-main.a30d7b09.js",
     "static/css/2.82a37e40.chunk.css",
-    "static/js/2.4a8b5c4a.chunk.js",
-    "static/css/main.4dfb7e07.chunk.css",
-    "static/js/main.bd2b5f52.chunk.js"
+    "static/js/2.07c5731e.chunk.js",
+    "static/css/main.a654adbf.chunk.css",
+    "static/js/main.464000b9.chunk.js"
   ]
 }
