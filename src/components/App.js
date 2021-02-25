@@ -14,22 +14,22 @@ const App = () => {
     <div className="container py-5-responsive">
       <div className="shadow rounded-lg overflow-hidden">
         <IconContext.Provider value={{style:{verticalAlign:'middle'}}}>
-              <Header />
-              <main className="row px-3 py-5 bg-white">
-                <div className="col">
-                  <Router basename={process.env.PUBLIC_URL}>
-                    <Switch>
-                      <Route exact path="/" component={Landing} />
-                      <Route path="/welcome" component={Welcome} />
-                      <Route path="/login" component={Login} />
-                      <Route path="/signup" component={Signup} />
-                      <Route path="/forgetpassword" component={ForgetPassword} />
-                      <Route component={ErrorPage} />
-                    </Switch>
-                  </Router>
-                </div>
-              </main>
-              <Footer />
+          <Router basename={process.env.PUBLIC_URL}>
+            <Header />
+            <main className="row px-3 py-5 bg-white">
+              <div className="col">
+                  <Switch>
+                    <Route exact path="/" component={Landing} />
+                    <Route path="/welcome" component={Welcome} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/signup" component={Signup} />
+                    <Route path="/forgetpassword" component={ForgetPassword} />
+                    <Route component={ErrorPage} />
+                  </Switch>
+              </div>
+            </main>
+            <Footer />
+          </Router>
         </IconContext.Provider>
       </div>
     </div>
