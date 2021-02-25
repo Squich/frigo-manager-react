@@ -17,9 +17,9 @@ const App = () => {
               <Header />
               <main className="row px-3 py-5 bg-white">
                 <div className="col">
-                  <Router basename={process.env.PUBLIC_URL}>
+                  <Router>
                     <Switch>
-                      <Route exact path="/" component={Landing} />
+                      <Route exact path={process.env.PUBLIC_URL + '/'} component={Landing} />
                       <Route path="/welcome" component={Welcome} />
                       <Route path="/login" component={Login} />
                       <Route path="/signup" component={Signup} />
