@@ -14,7 +14,7 @@ const App = () => {
     <div className="container py-5-responsive">
       <div className="shadow rounded-lg overflow-hidden">
         <IconContext.Provider value={{style:{verticalAlign:'middle'}}}>
-          <Router basename={process.env.PUBLIC_URL_GITHUB}>
+          <Router basename={process.env.PUBLIC_URL}>
             <Header />
             <main className="row px-3 py-5 bg-white">
               <div className="col">
