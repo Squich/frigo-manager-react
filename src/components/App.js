@@ -17,7 +17,7 @@ const App = () => {
               <Header />
               <main className="row px-3 py-5 bg-white">
                 <div className="col">
-                  <Router basename={process.env.PUBLIC_URL}>
+                  <Router basename="/frigo-manager-react">
                     <Switch>
                       <Route exact path="/" component={Landing} />
                       <Route path="/welcome" component={Welcome} />
