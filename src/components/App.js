@@ -17,17 +17,17 @@ const App = () => {
               <Header />
               <main className="row px-3 py-5 bg-white">
                 <div className="col">
-                  <Router>
+                  <Router basename={process.env.PUBLIC_URL}>
                     <Switch>
-                      <Route exact path={process.env.PUBLIC_URL + '/'} component={Landing} />
-                      <Route path={process.env.PUBLIC_URL + '/welcome'} component={Welcome} />
-                      <Route path={process.env.PUBLIC_URL + '/login'} component={Login} />
-                      <Route path={process.env.PUBLIC_URL + '/signup'} component={Signup} />
-                      <Route path={process.env.PUBLIC_URL + '/forgetpassword'} component={ForgetPassword} />
-                      <Route component={ErrorPage} />         
+                      <Route exact path="/" component={Landing} />
+                      <Route path="/welcome" component={Welcome} />
+                      <Route path="/login" component={Login} />
+                      <Route path="/signup" component={Signup} />
+                      <Route path="/forgetpassword" component={ForgetPassword} />
+                      <Route component={ErrorPage} />
                     </Switch>
-                  </Router>        
-                </div>           
+                  </Router>
+                </div>
               </main>
               <Footer />
         </IconContext.Provider>
