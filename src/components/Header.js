@@ -5,8 +5,8 @@ const Header = () => {
     return (
         <header className="entete">
             <div className="bg-entete"></div>
-            <h1 className="font-weight-light text-uppercase text-center">
-                    <Link to="/welcome" className="text-light">Frigo Manager</Link>
+            <h1 className="text-center">
+                    <Link to="/welcome" className="link-h1">Frigo Manager</Link>
             </h1>
         </header>
     )

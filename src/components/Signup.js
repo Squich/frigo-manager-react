@@ -55,7 +55,7 @@ const Signup = props => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="pseudo">Pseudo</label>
-                    <input className="form-control" onChange={handleChange} value={pseudo} type="text" id="pseudo" autoComplete="off" required />
+                    <input className="form-control" onChange={handleChange} value={pseudo} type="text" id="pseudo" autoComplete="off" maxLength="20" required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>

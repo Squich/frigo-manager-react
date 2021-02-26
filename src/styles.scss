@@ -4,7 +4,7 @@ $body-bg: #f8f9fa;
 $font-size-base: 1rem;
 $h1-font-size: $font-size-base * 1.75;
 $h2-font-size: $font-size-base * 1.75;
-$list-group-item-padding-x: 0.5rem;
+$list-group-item-padding-x: 0.25rem;
 $paragraph-margin-bottom: 0;
 $headings-margin-bottom: 0;
 
@@ -97,7 +97,7 @@ html {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #55c6ff;
+  background: #6c757d;
   margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {
@@ -208,6 +208,17 @@ html {
   100%{transform: translate(-75%,0);}
 }
 
+.link-h1 {
+  font-weight:300;
+  text-transform: uppercase;
+  color:#fff;
+}
+
+.link-h1:hover {
+  text-decoration: none;
+  color:#fff;
+}
+
 .pointer, .pointer * {
   cursor: pointer;
 }
@@ -221,5 +232,12 @@ html {
   .py-5-responsive {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .list-group-item {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
