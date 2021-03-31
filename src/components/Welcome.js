@@ -1,225 +1,190 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-import { FirebaseContext } from './Firebase';
+import UserSessionContext from './UserSessionContext';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-import Logout from './Logout';
 import FormProduct from './FormProduct';
-import TodayDate from './TodayDate';
 import Product from './Product';
 import Loader from './Loader';
 import { FiPlus } from "react-icons/fi";
 import { FaRegTrashAlt, FaCheck, FaTimes } from "react-icons/fa";
 
-toast.configure({
-    position: "top-right",
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: false
-});
-
 const Welcome = props => {
 
-    const firebase = useContext(FirebaseContext);
+    const {userSession, userData, setUserData}  = useContext(UserSessionContext);
+    const {pseudo, listFridges, currentIndexFridge, listProducts, nextId}  = userData;
 
-    const initialFormValues = {name: "", date: "", recipe: "", opened: "false"};
-
-    const [userSession, setUserSession] = useState(null);
-    const [userData, setUserData] = useState({});
+    const initialFormValues = {name: "", date: "", recipe: "", opened: "false", indexFridge: 0};
+    
     const [welcomeMsg, setWelcomeMsg] = useState(false);
-    const [listProducts, setListProducts] = useState([]);
     const [form, setForm] = useState(false);
     const [formValues, setFormValues] = useState(initialFormValues);
-    const [idProduct, setIdProduct] = useState(1);
-    const [idProductToModified, setIdProductToModified] = useState(null);
+    const [idToModified, setIdToModified] = useState(null);
     const [alert, setAlert] = useState(false);
 
-    const {name, date, recipe, opened} = formValues;
+    useEffect(() => !userSession && props.history.push("/"), [userSession, props.history]);
 
     useEffect(() => {
-        let listener = firebase.auth.onAuthStateChanged(user => user ? setUserSession(user) : props.history.push("/"));
-        if (userSession) {
-            firebase.user(userSession.uid)
-            .get()
-            .then(doc => {
-                if (doc && doc.exists) {
-                    const myData = doc.data();
-                    setUserData(myData)
-                }
-            })
-            .catch(error => console.log(error))
-        }
-        return () => listener();
-    }, [userSession, firebase, props.history]);
-
-    useEffect(() => {
-        userData.listProducts && setListProducts(userData.listProducts);
-        userData.idProduct && setIdProduct(userData.idProduct);
-        if (userData.pseudo && !welcomeMsg) {
-            toast.success(`Bienvenue ${userData.pseudo}`);
+        if (pseudo && !welcomeMsg) {
             setWelcomeMsg(true);
+            toast.success(`Bienvenue ${pseudo}`);
         }
-    }, [userData]);
-
-    useEffect(() => {
-        if (userSession) {
-            firebase.user(userSession.uid)
-            .update({
-                listProducts: listProducts,
-                idProduct: idProduct
-            })
-            .then(() => console.log("Données de l'utilisateur mises à jour"))
-            .catch((error) => console.error("Erreur de mise à jour des données de l'utilisateur : ", error));
-        }
-    }, [listProducts]);
-
-    const showForm = (id = null, name = "", date = "", recipe = "", opened = "false") => {
-        setIdProductToModified(id);
-        setFormValues({name, date, recipe, opened});
+    }, [pseudo]);
+    
+    const showForm = (id = null, name = "", date = "", recipe = "", opened = "false", indexFridge = currentIndexFridge === Infinity ? -1 : currentIndexFridge) => {
+        setIdToModified(id);
+        setFormValues({name, date, recipe, opened, indexFridge});
         setForm(true);
     }
 
     const hideForm = () => setForm(false);
 
-    const addProduct = (name, date, recipe, opened) => {
-        const newProduct = {id: idProduct, name, date, recipe, opened};
-        setListProducts([...listProducts, newProduct]);
-        setIdProduct(idProduct + 1);
+    const addProduct = (name, date, recipe, opened, indexFridge) => {
+        setUserData({
+            ...userData, 
+            listProducts: [...listProducts, {id: nextId, name, date, recipe, opened, indexFridge}], 
+            nextId: nextId + 1
+        });
         setForm(false);
         toast.success(`Ajout de ${name}`);
     }
 
-    const modifyProduct = (id, name, date, recipe, opened) => {
+    const modifyProduct = (id, name, date, recipe, opened, indexFridge) => {
         const i = listProducts.findIndex(product => product.id === id);
         const newListProducts = [...listProducts];
-        newListProducts[i] = {id, name, date, recipe, opened};
-        setListProducts(newListProducts);
+        newListProducts[i] = {id, name, date, recipe, opened, indexFridge};
+        setUserData({...userData, listProducts: newListProducts});
         setForm(false);
         toast.success(`Modification de ${name}`);
     }
 
     const deleteProduct = id => {
         const i = listProducts.findIndex(product => product.id === id);
+        const productName = listProducts[i].name;
         const newListProducts = [...listProducts];
-        const name = newListProducts[i].name;
         newListProducts.splice(i, 1);
-        setListProducts(newListProducts);
-        toast.success(`Suppression de ${name}`);
+        setUserData({...userData, listProducts: newListProducts});
+        toast.success(`Suppression de ${productName}`);
     }
 
     const deleteAllProducts = () => {
-            setListProducts([]);
-            setAlert(false); 
-            toast.success("Suppression de toute la liste");      
+        const filtredListProduct = currentIndexFridge === Infinity ? [] : listProducts.filter(product => product.indexFridge !== currentIndexFridge);
+        setUserData({...userData, listProducts: filtredListProduct});
+        setAlert(false); 
+        toast.success("Suppression de tous les produits");
     }
 
-    const alertMsg = 
-        alert && 
-        <div className="alert alert-danger mb-4" role="alert">
-            <p className="h5 text-center mb-3">Supprimer tous les produits ?</p>
+    const alertMsg = (
+        <div className="alert alert-danger mb-6" role="alert">
+            <p className="h5 text-center mb-3">
+                {
+                    currentIndexFridge === Infinity 
+                    ? (
+                        "Supprimer tous les produits de tous les frigos ?"
+                    ) : currentIndexFridge === -1
+                    ? (
+                        "Supprimer tous les produits non assignés à un frigo ?"
+                    ) : (
+                        <Fragment>
+                            Supprimer tous les produits du frigo <span className="text-uppercase">{listFridges[currentIndexFridge]}</span>
+                        </Fragment>                            
+                    )
+                }
+            </p>
             <div className="row text-center">
                 <div className="col">
-                    <button 
-                        type="button" 
-                        className="btn btn-success btn-block" 
-                        onClick={() => deleteAllProducts()}
-                    >
+                    <button type="button" className="btn btn-success btn-block" onClick={() => deleteAllProducts()}>
                         <FaCheck /> Oui
                     </button>
                 </div>
                 <div className="col">
-                    <button 
-                        type="button" 
-                        className="btn btn-danger btn-block" 
-                        onClick={() => setAlert(false)}
-                    >
+                    <button type="button" className="btn btn-danger btn-block" onClick={() => setAlert(false)}>
                         <FaTimes /> Non
                     </button>
                 </div>
             </div>
-        </div>;
+        </div>
+    );
 
-    const buttons = 
-        <div className="row">
+    const buttons = (
+        <div className="row pb-6">
             <div className="col-6 col-sm-8 pr-2">
-                <button 
-                    type="button" 
-                    className="btn btn-primary btn-block text-nowrap" 
-                    onClick={() => showForm()}
-                >
+                <button type="button" className="btn btn-primary btn-block text-nowrap" onClick={() => showForm()}>
                     <FiPlus /> Ajouter
                 </button>
             </div>
             <div className="col-6 col-sm-4 pl-2">
-                <button 
-                    type="button" 
-                    className="btn btn-outline-secondary btn-block text-nowrap" 
-                    onClick={() => setAlert(true)} 
-                    disabled={!listProducts.length}
-                >
+                <button type="button" className="btn btn-outline-secondary btn-block text-nowrap" onClick={() => setAlert(true)} disabled={!listProducts.length}>
                     <FaRegTrashAlt /> Tout effacer
                 </button>
             </div>
         </div>
+    );
+
+    const filtredListProduct = 
+        listProducts
+            .filter(product => {
+                return currentIndexFridge === Infinity 
+                ? product
+                : currentIndexFridge === -1
+                ? product.indexFridge === -1
+                : product.indexFridge === currentIndexFridge
+            })
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
 
     const list = 
-        listProducts.length
-        ?
-        <ul className="list-group list-group-flush">
-            {
-                listProducts
-                    .sort((a, b) => new Date(a.date) - new Date(b.date))
-                    .map(product => {
-                        const {id, name, date, recipe, opened} = product;
-                        return (
-                            <li key={id} className="list-group-item">
-                                <Product
-                                    id={id}
-                                    name={name}
-                                    date={date}
-                                    recipe={recipe}
-                                    opened={opened}
-                                    showForm={showForm}
-                                    deleteProduct={deleteProduct}
-                                />
-                            </li>
-                        )
-                    })
-            }
-        </ul>
-        :
-        <p className="h5 text-muted text-center pt-3 mb-0">Votre liste est vide !</p>
+        filtredListProduct.length
+        ? (
+            <ul className="list-group list-group-flush">
+                {
+                    filtredListProduct
+                        .map(product => {
+                            const {id, name, date, recipe, opened, indexFridge} = product;
+                            return (
+                                <li key={id} className="list-group-item">
+                                    <Product
+                                        id={id}
+                                        name={name}
+                                        date={date}
+                                        recipe={recipe}
+                                        opened={opened}
+                                        indexFridge={indexFridge}
+                                        showForm={showForm}
+                                        deleteProduct={deleteProduct}
+                                    />
+                                </li>
+                            )
+                        })
+                }
+            </ul>
+        ) : (
+            <p className="h5 text-muted text-center pt-5">Votre liste est vide !</p>
+        );
 
     return (
         userSession 
-        ?
-        <Fragment>
-            <Logout userData={userData}/>
-            {alertMsg}
-            {
-                form 
-                ?
-                <FormProduct
-                    id={idProductToModified}
-                    name={name}
-                    date={date}
-                    recipe={recipe}
-                    opened={opened}
-                    addProduct={addProduct}
-                    modifyProduct={modifyProduct}
-                    hideForm={hideForm}
-                />
-                :
-                <Fragment>
-                    {buttons}
-                    <TodayDate />
-                    {list}
-                </Fragment>
-            }
-        </Fragment>
-        :
-        <Loader />
+        ? (
+            <Fragment>
+                {
+                    form 
+                    ? (
+                        <FormProduct
+                            idToModified={idToModified}
+                            listFridges={listFridges}
+                            formValues={formValues}
+                            addProduct={addProduct}
+                            modifyProduct={modifyProduct}
+                            hideForm={hideForm}
+                        />
+                    ) : (
+                        <Fragment>
+                            {alert ? alertMsg : buttons}
+                            {list}
+                        </Fragment>
+                    )
+                }
+            </Fragment>
+        ) : (
+            <Loader />
+        )
     )
 
 }

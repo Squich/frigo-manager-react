@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UserSessionContext from './UserSessionContext';
 import { FaExclamation, FaRegFrown, FaRegMeh, FaRegSmile, FaTags, FaPencilAlt, FaTimes } from "react-icons/fa";
 import ReactTooltip from 'react-tooltip';
 
-const Product = ({id, name, date, recipe, opened, showForm, deleteProduct}) => {
+const Product = ({id, name, date, recipe, opened, indexFridge, showForm, deleteProduct}) => {
+
+    const {userData} = useContext(UserSessionContext);
+    const {listFridges} = userData;
+
+    const fridgeName = indexFridge === -1 ? "non assigné" : listFridges[indexFridge];
 
     const formatDate = date.replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3/$2");
 
@@ -17,10 +23,10 @@ const Product = ({id, name, date, recipe, opened, showForm, deleteProduct}) => {
         "green";
 
     const smileyIcon = 
-        opened === "true" ? <FaExclamation className="mr-3 pointer" color={smileyColor} data-for="smileyTooltip" data-tip={smileyTooltipMsg} data-event="click" /> : 
-        remainingDays < 0 ? <FaRegFrown className="mr-3 pointer" color={smileyColor} data-for="smileyTooltip" data-tip={smileyTooltipMsg} data-event="click" /> : 
-        remainingDays < 4 ? <FaRegMeh className="mr-3 pointer" color={smileyColor} data-for="smileyTooltip" data-tip={smileyTooltipMsg} data-event="click" /> : 
-        <FaRegSmile className="mr-3 pointer" color={smileyColor} data-for="smileyTooltip" data-tip={smileyTooltipMsg} data-event="click" />;
+        opened === "true" ? (<FaExclamation className="mr-3 pointer" color={smileyColor} data-for="smileyTooltip" data-tip={smileyTooltipMsg} data-event="click" />) : 
+        remainingDays < 0 ? (<FaRegFrown className="mr-3 pointer" color={smileyColor} data-for="smileyTooltip" data-tip={smileyTooltipMsg} data-event="click" />) : 
+        remainingDays < 4 ? (<FaRegMeh className="mr-3 pointer" color={smileyColor} data-for="smileyTooltip" data-tip={smileyTooltipMsg} data-event="click" />) : 
+        (<FaRegSmile className="mr-3 pointer" color={smileyColor} data-for="smileyTooltip" data-tip={smileyTooltipMsg} data-event="click" />);
 
     return (
         <div className="d-flex justify-content-between">
@@ -28,12 +34,17 @@ const Product = ({id, name, date, recipe, opened, showForm, deleteProduct}) => {
                 {smileyIcon}
                 <ReactTooltip id="smileyTooltip" place="top" effect="solid" eventOff="click" delayHide={1500} />
                 <span className="mr-3"><strong>{formatDate}</strong></span>
-                <span className="mr-3">{name}</span>
+                <span className="mr-3 pointer" data-for="frigoTooltip" data-tip={`Frigo ${fridgeName}`} data-event="click">{name}</span>
+                <ReactTooltip id="frigoTooltip" place="top" effect="solid" eventOff="click" delayHide={1500} />
             </div>
             <div>
-                {recipe && <FaTags className="mr-3 pointer" color="#6c757d" data-for="recipeTooltip" data-tip={recipe} data-event="click" />}
+                {
+                    recipe && (
+                        <FaTags className="mr-3 pointer" color="#6c757d" data-for="recipeTooltip" data-tip={`Recette ${recipe}`} data-event="click" />
+                    )
+                }
                 <ReactTooltip id="recipeTooltip" place="top" effect="solid" eventOff="click" delayHide={1500} />
-                <FaPencilAlt className="mr-3 pointer" color="#6c757d" onClick={() => showForm(id, name, date, recipe, opened)} />
+                <FaPencilAlt className="mr-3 pointer" color="#6c757d" onClick={() => showForm(id, name, date, recipe, opened, indexFridge)} />
                 <FaTimes className="pointer" color="#6c757d" onClick={() => deleteProduct(id)} />
             </div>
         </div>

@@ -1,61 +1,67 @@
 import React, { useState, useContext, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { FirebaseContext } from './Firebase';
+import FirebaseContext from './FirebaseContext';
 
 const Signup = props => {
 
-    const firebase = useContext(FirebaseContext);
+    const firebaseContext = useContext(FirebaseContext);
 
-    const data = {
+    const initialLoginData = {
         pseudo: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        nameFridge : ""
     }
 
-    const [loginData, setLoginData] = useState(data);
+    const [loginData, setLoginData] = useState(initialLoginData);
     const [error, setError] = useState("");
 
-    const {pseudo, email, password, confirmPassword} = loginData;
+    const {pseudo, email, password, confirmPassword, nameFridge} = loginData;
 
     const handleChange = e => setLoginData({...loginData, [e.target.id]: e.target.value});
 
     const handleSubmit = e => {
         e.preventDefault();
-        firebase.signupUser(email, password)
+        firebaseContext.signupUser(email, password)
         .then(authUser => {
-            return firebase.user(authUser.user.uid).set({
+            return firebaseContext.userDoc(authUser.user.uid).set({
                 pseudo, 
                 email,
-                listProducts : [],
-                idProduct : 0
+                listFridges: [nameFridge],
+                currentIndexFridge: 0,
+                listProducts: [],
+                listMemento: [],
+                nextId: 1
             })
         })
         .then(() => {
-            setLoginData({...data});
+            setLoginData({...initialLoginData});
             props.history.push("/welcome");
         })
         .catch(error => {
             setError(error);
-            setLoginData({...data});
+            setLoginData({...initialLoginData});
         })
     }
 
-    const btn = 
-        !pseudo || !email || !password || password !== confirmPassword
-        ? <button type="submit" className="btn btn-primary" disabled>Inscription</button>
-        : <button type="submit" className="btn btn-primary">Inscription</button>
+    const disabled = !pseudo || !email || !password || !nameFridge || password !== confirmPassword;
 
-    const errorMsg = error && <div className="alert alert-danger mb-4" role="alert">{error.message}</div>;
+    const errorMsg = 
+        error && (
+            <div className="alert alert-danger mb-5" role="alert">
+                {error.message}
+            </div>
+        );
 
     return (
         <Fragment>
-            {errorMsg}           
-            <h2 className="mb-4">Inscription</h2>
+            {errorMsg}
+            <p className="h2 mb-6">Inscription</p>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="pseudo">Pseudo</label>
-                    <input className="form-control" onChange={handleChange} value={pseudo} type="text" id="pseudo" autoComplete="off" maxLength="20" required />
+                    <input className="form-control" onChange={handleChange} value={pseudo} type="text" id="pseudo" autoComplete="off" maxLength="10" required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
@@ -65,13 +71,19 @@ const Signup = props => {
                     <label htmlFor="password">Mot de passe</label>
                     <input className="form-control" onChange={handleChange} value={password} type="password" id="password" autoComplete="off" required />
                 </div>
-                <div className="mb-4">
+                <div className="form-group">
                     <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
                     <input className="form-control" onChange={handleChange} value={confirmPassword} type="password" id="confirmPassword" autoComplete="off" required />
                 </div>
-                {btn}
+                <div className="mb-5">
+                    <label htmlFor="nameFridge">Donner un nom à votre frigo</label>
+                    <input className="form-control" onChange={handleChange} value={nameFridge} type="text" id="nameFridge" autoComplete="off" maxLength="20" required />
+                </div>
+                <button type="submit" className="btn btn-primary" disabled={disabled}>
+                    Inscription
+                </button>
             </form>
-            <div className="mt-5">
+            <div className="mt-6">
                 <Link to="/login">Déjà inscrit ? Connectez-vous.</Link>
             </div>
         </Fragment>

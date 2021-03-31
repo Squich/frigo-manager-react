@@ -1,4 +1,3 @@
-import React from 'react';
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -33,12 +32,21 @@ class Firebase {
     // Récupération mot de passe
     passwordReset = email => this.auth.sendPasswordResetEmail(email);
 
-    // Firestore
-    user = uid => this.db.doc(`users/${uid}`);
+    // Récupération du document Firestore d'un utilisateur
+    userDoc = uid => this.db.doc(`users/${uid}`);
+
+    // Modifier l'adresse email d'un utilisateur
+    updateEmail = email => this.auth.currentUser.updateEmail(email);
+
+    // Modifier le mot de passe d'un utilisateur
+    updatePassword = password => this.auth.currentUser.updatePassword(password);
+
+    // Suppression d'un utilisateur
+    deleteUser = () => this.auth.currentUser.delete();
+
+    // Suppression du document Firestore associé à un utilisateur
+    deleteUserDoc = uid => this.db.doc(`users/${uid}`).delete();
 
 }
 
-const FirebaseContext = React.createContext(null);
-
 export default Firebase;
-export { FirebaseContext };

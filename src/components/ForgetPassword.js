@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FirebaseContext } from './Firebase';
+import FirebaseContext from './FirebaseContext';
 
 const ForgetPassword = props => {
 
-    const firebase = useContext(FirebaseContext);
+    const firebaseContext = useContext(FirebaseContext);
 
     const [email, setEmail] = useState("");
     const [success, setSuccess] = useState(null);
@@ -12,7 +12,7 @@ const ForgetPassword = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        firebase.passwordReset(email)
+        firebaseContext.passwordReset(email)
         .then(() => {
             setEmail("");
             setError(null);
@@ -25,23 +25,35 @@ const ForgetPassword = props => {
         })
     }
 
-    const successMsg = success && <div className="alert alert-success mb-4" role="alert">{success}</div>;
-    const errorMsg = error && <div className="alert alert-danger mb-4" role="alert">{error}</div>;
+    const successMsg = 
+        success && (
+            <div className="alert alert-success mb-5" role="alert">
+                {success}
+            </div>
+        );
+
+    const errorMsg = 
+        error && (
+            <div className="alert alert-danger mb-5" role="alert">
+                {error}
+            </div>
+        );
+
     const disabled = !email;
 
     return (
         <div>          
             {successMsg}
             {errorMsg}
-            <h2  className="mb-4">Mot de passe oublié</h2>
+            <p className="h2 mb-6">Mot de passe oublié</p>
             <form onSubmit={handleSubmit}>
-                <div className="mb-4">
+                <div className="mb-5">
                     <label htmlFor="email">Email</label>
                     <input className="form-control" onChange={e => setEmail(e.target.value)} value={email} type="email" id="email" autoComplete="off" required />
                 </div>
                 <button type="submit" className="btn btn-primary" disabled={disabled}>Récupérer</button>
             </form>
-            <div className="mt-5">
+            <div className="mt-6">
                 <Link to="/login">Déjà inscrit ? Connectez-vous.</Link>
             </div>
         </div>

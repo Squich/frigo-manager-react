@@ -1,12 +1,30 @@
 // Override default Bootstap's variables before the import
 
 $body-bg: #f8f9fa;
+$gray-700: #495057 !default;
+$body-color: $gray-700 !default;
 $font-size-base: 1rem;
 $h1-font-size: $font-size-base * 1.75;
 $h2-font-size: $font-size-base * 1.75;
 $list-group-item-padding-x: 0.25rem;
 $paragraph-margin-bottom: 0;
 $headings-margin-bottom: 0;
+
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge(
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 2),
+    6: ($spacer * 2.5),
+    7: ($spacer * 3)
+  ),
+  $spacers
+);
 
 // Import Bootstrap and its default variables
 
@@ -41,39 +59,36 @@ html {
 .Toastify__toast-container {
     width: auto;
     max-width: 400px;
+    top: 1rem;
 }
 
 .Toastify__toast {
-    padding-left: 15px;
-    padding-right: 35px;
+    min-height: 50px;
+    padding: 0 45px 0 15px;
+    margin-bottom: 5px;
 }
 
 .Toastify__close-button {
     position: absolute;
-    top: 0px;
+    top: 0;
     right: 7px;
 }
 
 .Toastify__toast-body {
   font-size: .9rem;
+  padding: 0;
 }
 
 @media only screen and (max-width: 480px) {
 
   .Toastify__toast-container {
     width: auto;
-    padding: 4px;
-    left: auto;
+    left: .5rem;
     margin: 0;
   }
 
   .Toastify__toast-body {
     font-size: 1rem;
-  }
-
-  .Toastify__toast-container--top-right {
-    top: .5em;
-    right: .5em;
   }
 
 }
@@ -167,20 +182,16 @@ html {
 
 // Button Switch Logout
 
-.custom-control-label::before {
-  border-color: #6c757d;
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #0069d9;
+  background-color: #0069d9;
 }
 
-.custom-switch .custom-control-label::after {
-  background-color: #6c757d;
-}
-
-// My classes
+// Entete
 
 .entete {
   position: relative;
   overflow: hidden;
-  padding: 3rem 1.5rem;
 }
 
 .bg-entete {
@@ -208,36 +219,96 @@ html {
   100%{transform: translate(-75%,0);}
 }
 
-.link-h1 {
-  font-weight:300;
-  text-transform: uppercase;
-  color:#fff;
+// Portal
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0, 0, 0, .5);
 }
 
-.link-h1:hover {
-  text-decoration: none;
-  color:#fff;
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem 1.5rem 3rem 1.5rem;
+  background-color: white;
+  color: #212529;
+  transform: translateX(100%);
+  transition: transform 350ms ease-in-out;
+  overflow-y: auto;
 }
+
+.menu.animMenu {
+  transform: translateX(0);
+}
+
+@include media-breakpoint-up(sm) {
+  .menu {
+    width: 90%;
+  }
+}
+
+// My classes
 
 .pointer, .pointer * {
   cursor: pointer;
 }
 
-.py-5-responsive {
+main {
+  min-height: 50vh;
+}
+
+.py-responsive {
   padding-top: 1.5rem !important;
   padding-bottom: 1.5rem !important;
 }
 
 @include media-breakpoint-up(md) {
-  .py-5-responsive {
+  .py-responsive {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }
 }
 
+.list-group-item {
+  padding: 0.5rem 0.25rem
+}
+
+.list-group-item:first-child {
+  padding-top: 0;
+}
+
+.list-group-item:last-child {
+  padding-bottom: 0;
+}
+
 @include media-breakpoint-up(sm) {
   .list-group-item {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0.75rem 0.5rem
   }
+}
+
+.my-form {
+  width: calc(100% - 30px);
+  height: auto;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.my-form:focus {
+  outline: none;
+}
+
+.bg-landing {
+  background-image: url(./images/frigo-min.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }

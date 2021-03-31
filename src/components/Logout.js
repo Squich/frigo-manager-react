@@ -1,31 +1,49 @@
 import React, { useState, useEffect, useContext } from 'react';
+import FirebaseContext from './FirebaseContext';
+import UserSessionContext from './UserSessionContext';
+import HeaderContext from './HeaderContext';
 import { Form } from 'react-bootstrap';
-import { FirebaseContext } from './Firebase';
 
-const Logout = ({userData}) => {
+const Logout = () => {
 
-    const firebase = useContext(FirebaseContext);
+    const firebaseContext = useContext(FirebaseContext);
 
-    const [checked, setChecked] = useState(false);
+    const {userSession, userData} = useContext(UserSessionContext);
+    const {pseudo} = userData;
 
-    useEffect(() => checked && setTimeout(() => firebase.signoutUser(), 1000), [checked, firebase]);
+    const {setUserMenu, closeMenu}  = useContext(HeaderContext);
+
+    const [checked, setChecked] = useState(true);
+    const [labelMsg, setLabelMsg] = useState("");
+
+    useEffect(() => {
+        if (userSession && !checked) {
+            setLabelMsg("Déconnexion...");
+            setTimeout(() => {
+                closeMenu(setUserMenu);
+                firebaseContext.signoutUser();
+            }, 1000);
+        }
+    }, [userSession, checked]);
+
+    useEffect(() => userSession && setLabelMsg("Déconnecter " + pseudo), [pseudo]);
 
     const handleChange = e => setChecked(e.target.checked);
 
-    const pseudo = userData.pseudo ? ` (${userData.pseudo})` : "";
-    const label = checked ? "Déconnexion..." : `Connecté${pseudo}`;
-
     return (
-        <Form className="d-flex justify-content-end mt-n4 mb-3">
-            <Form.Check
-                onChange={handleChange} 
-                checked={checked}
-                type="switch"
-                label={label}
-                id="deconnexion"
-                className="pointer"
-            />
-        </Form>
+        <div className="d-flex">
+            <Form>
+                <Form.Check
+                    onChange={handleChange} 
+                    type="switch"
+                    checked={checked}
+                    disabled={!checked}
+                    label={labelMsg}
+                    id="deconnexion"
+                    className="pointer"
+                />
+            </Form>
+        </div>
     )
 }
 

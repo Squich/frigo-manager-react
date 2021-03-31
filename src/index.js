@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import Firebase, { FirebaseContext } from './components/Firebase';
+import Firebase from './components/Firebase';
+import FirebaseContext from './components/FirebaseContext';
 import './styles.scss';
 
 ReactDOM.render(

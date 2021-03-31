@@ -1,17 +1,17 @@
 import React, { useState, useContext, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { FirebaseContext } from './Firebase';
+import FirebaseContext from './FirebaseContext';
 
 const Login = props => {
 
-    const firebase = useContext(FirebaseContext);
+    const firebaseContext = useContext(FirebaseContext);
 
-    const data = {
+    const initialLoginData = {
         email: "",
         password: "",
     }
 
-    const [loginData, setLoginData] = useState(data);
+    const [loginData, setLoginData] = useState(initialLoginData);
     const [error, setError] = useState("");
 
     const {email, password} = loginData;
@@ -20,40 +20,46 @@ const Login = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        firebase.loginUser(email, password)
+        firebaseContext.loginUser(email, password)
         .then(() => {
-            setLoginData({...data});
+            setLoginData({...initialLoginData});
             props.history.push("/welcome");
         })
         .catch(error => {
             setError(error);
-            setLoginData({...data});
+            setLoginData({...initialLoginData});
         })
     }
 
-    const btn = 
-        !email || password.length < 6
-        ? <button type="submit" className="btn btn-primary" disabled>Connexion</button>
-        : <button type="submit" className="btn btn-primary">Connexion</button>
+    const btn = (
+        <button type="submit" className="btn btn-primary" disabled={!email || password.length < 6}>
+            Connexion
+        </button>
+    );
 
-    const errorMsg = error && <div className="alert alert-danger mb-4" role="alert">{error.message}</div>;
+    const errorMsg = 
+        error && (
+            <div className="alert alert-danger mb-5" role="alert">
+                {error.message}
+            </div>
+        );
 
     return (
         <Fragment>
             {errorMsg}
-            <h2 className="mb-4">Connexion</h2>
+            <p className="h2 mb-6">Connexion</p>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input className="form-control" onChange={handleChange} value={email} type="email" id="email" autoComplete="off" required />
+                    <input className="form-control" onChange={handleChange} value={email} type="email" id="email" autoComplete="on" required />
                 </div>
-                <div className="mb-4">
+                <div className="mb-5">
                     <label htmlFor="password">Mot de passe</label>
                     <input className="form-control" onChange={handleChange} value={password} type="password" id="password" autoComplete="off" required />
                 </div>
                 {btn}
             </form>
-            <div className="mt-5">
+            <div className="mt-6">
                 <Link to="/signup">Pas encore de compte ? Inscrivez-vous.</Link>
             </div>
             <div>
