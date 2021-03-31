@@ -260,10 +260,6 @@ html {
   cursor: pointer;
 }
 
-main {
-  min-height: 50vh;
-}
-
 .py-responsive {
   padding-top: 1.5rem !important;
   padding-bottom: 1.5rem !important;
@@ -273,6 +269,23 @@ main {
   .py-responsive {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
+  }
+}
+
+main {
+  min-height: 50vh;
+}
+
+.bg-landing {
+  background-image: url(./images/frigo-min.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+@include media-breakpoint-up(lg) {
+  .bg-landing {
+    background-size: auto 90%;
   }
 }
 
@@ -304,11 +317,4 @@ main {
 
 .my-form:focus {
   outline: none;
-}
-
-.bg-landing {
-  background-image: url(./images/frigo-min.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 }
