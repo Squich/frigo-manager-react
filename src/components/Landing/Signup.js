@@ -1,6 +1,6 @@
 import React, { useState, useContext, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import FirebaseContext from './FirebaseContext';
+import FirebaseContext from '../Contexts/FirebaseContext';
 
 const Signup = props => {
 

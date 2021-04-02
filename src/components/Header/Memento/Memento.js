@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-import UserSessionContext from './UserSessionContext';
-import HeaderContext from './HeaderContext';
+import UserSessionContext from '../../Contexts/UserSessionContext';
+import HeaderContext from '../../Contexts/HeaderContext';
 import { toast } from 'react-toastify';
 import { CgClose } from "react-icons/cg";
 import { FiPlus } from "react-icons/fi";

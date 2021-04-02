@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import FirebaseContext from './FirebaseContext';
-import UserSessionContext from './UserSessionContext';
-import HeaderContext from './HeaderContext';
+import FirebaseContext from '../../Contexts/FirebaseContext';
+import UserSessionContext from '../../Contexts/UserSessionContext';
+import HeaderContext from '../../Contexts/HeaderContext';
 import { Form } from 'react-bootstrap';
 
 const Logout = () => {

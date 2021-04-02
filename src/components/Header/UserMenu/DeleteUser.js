@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import FirebaseContext from './FirebaseContext';
-import UserSessionContext from './UserSessionContext';
-import HeaderContext from './HeaderContext';
+import FirebaseContext from '../../Contexts/FirebaseContext';
+import UserSessionContext from '../../Contexts/UserSessionContext';
+import HeaderContext from '../../Contexts/HeaderContext';
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { toast } from 'react-toastify';
 

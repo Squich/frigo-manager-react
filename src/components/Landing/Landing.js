@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
-import UserSessionContext from './UserSessionContext';
 import { Link } from 'react-router-dom';
+import UserSessionContext from '../Contexts/UserSessionContext';
 
 const Landing = props => {
 

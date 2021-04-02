@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import UserSessionContext from './UserSessionContext';
+import UserSessionContext from '../Contexts/UserSessionContext';
 import { FaExclamation, FaRegFrown, FaRegMeh, FaRegSmile, FaTags, FaPencilAlt, FaTimes } from "react-icons/fa";
 import ReactTooltip from 'react-tooltip';
 

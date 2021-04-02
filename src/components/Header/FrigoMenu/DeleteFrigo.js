@@ -1,5 +1,5 @@
 import React, { useState, useContext, Fragment } from 'react';
-import UserSessionContext from './UserSessionContext';
+import UserSessionContext from '../../Contexts/UserSessionContext';
 import { toast } from 'react-toastify';
 import { FaCheck, FaTimes } from "react-icons/fa";
 

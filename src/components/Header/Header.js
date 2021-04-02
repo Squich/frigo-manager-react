@@ -1,11 +1,11 @@
 import React, { useState, useContext, Fragment } from 'react';
-import UserSessionContext from './UserSessionContext';
-import HeaderContext from './HeaderContext';
+import UserSessionContext from '../Contexts/UserSessionContext';
+import HeaderContext from '../Contexts/HeaderContext';
+import Portal from '../Portal/Portal';
 import TodayDate from './TodayDate';
-import Portal from './Portal';
-import FrigoMenu from './FrigoMenu';
-import Memento from './Memento';
-import UserMenu from './UserMenu';
+import FrigoMenu from './FrigoMenu/FrigoMenu';
+import Memento from './Memento/Memento';
+import UserMenu from './UserMenu/UserMenu';
 import { BiNote, BiFridge, BiUser } from "react-icons/bi";
 
 const Header = () => {

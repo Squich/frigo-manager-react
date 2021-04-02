@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-import UserSessionContext from './UserSessionContext';
+import UserSessionContext from '../Contexts/UserSessionContext';
 import { toast } from 'react-toastify';
 import FormProduct from './FormProduct';
 import Product from './Product';

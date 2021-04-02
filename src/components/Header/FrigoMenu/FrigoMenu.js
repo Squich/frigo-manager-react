@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import UserSessionContext from './UserSessionContext';
-import HeaderContext from './HeaderContext';
+import UserSessionContext from '../../Contexts/UserSessionContext';
+import HeaderContext from '../../Contexts/HeaderContext';
 import SelectFrigo from './SelectFrigo';
 import RenameFrigo from './RenameFrigo';
 import AddFrigo from './AddFrigo';

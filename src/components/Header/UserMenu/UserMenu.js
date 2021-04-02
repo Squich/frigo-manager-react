@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import HeaderContext from './HeaderContext';
+import HeaderContext from '../../Contexts/HeaderContext';
 import ChangePseudo from './ChangePseudo';
 import UpdateEmail from './UpdateEmail';
 import UpdatePassword from './UpdatePassword';

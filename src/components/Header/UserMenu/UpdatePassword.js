@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import FirebaseContext from './FirebaseContext';
-import HeaderContext from './HeaderContext';
+import FirebaseContext from '../../Contexts/FirebaseContext';
+import HeaderContext from '../../Contexts/HeaderContext';
 import { toast } from 'react-toastify';
 
 const UpdatePassword = () => {
