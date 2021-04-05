@@ -30,161 +30,36 @@ $spacers: map-merge(
 
 @import '~bootstrap/scss/bootstrap.scss';
 
-// Responsive font-size with Bootstrap's breakpoints
+// Responsive font-size
 
-html {
+@media (max-width: 320px) {
+  html {
+    font-size: .7rem;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 360px) {
+  html {
     font-size: .8rem;
   }
-  
-  @include media-breakpoint-up(sm) {
-    html {
-      font-size: .9rem;
-    }
-  }
-  
-  @include media-breakpoint-up(md) {
-    html {
-      font-size: 1rem;
-    }
-  }
-  
-  @include media-breakpoint-up(lg) {
-    html {
-      font-size: 1.1rem;
-    }
-  }
-
-// Toastify
-
-.Toastify__toast-container {
-    width: auto;
-    max-width: 400px;
-    top: 1rem;
 }
 
-.Toastify__toast {
-    min-height: 50px;
-    padding: 0 45px 0 15px;
-    margin-bottom: 5px;
-}
-
-.Toastify__close-button {
-    position: absolute;
-    top: 0;
-    right: 7px;
-}
-
-.Toastify__toast-body {
-  font-size: .9rem;
-  padding: 0;
-}
-
-@media only screen and (max-width: 480px) {
-
-  .Toastify__toast-container {
-    width: auto;
-    left: .5rem;
-    margin: 0;
+@media (min-width: 361px) and (max-width: 409px) {
+  html {
+    font-size: .9rem;
   }
+}
 
-  .Toastify__toast-body {
+@media (min-width: 410px) and (max-width: 575px) {
+  html {
     font-size: 1rem;
   }
-
 }
 
-// Loader
-
-.lds-roller {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-roller div {
-  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  transform-origin: 40px 40px;
-}
-.lds-roller div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #6c757d;
-  margin: -4px 0 0 -4px;
-}
-.lds-roller div:nth-child(1) {
-  animation-delay: -0.036s;
-}
-.lds-roller div:nth-child(1):after {
-  top: 63px;
-  left: 63px;
-}
-.lds-roller div:nth-child(2) {
-  animation-delay: -0.072s;
-}
-.lds-roller div:nth-child(2):after {
-  top: 68px;
-  left: 56px;
-}
-.lds-roller div:nth-child(3) {
-  animation-delay: -0.108s;
-}
-.lds-roller div:nth-child(3):after {
-  top: 71px;
-  left: 48px;
-}
-.lds-roller div:nth-child(4) {
-  animation-delay: -0.144s;
-}
-.lds-roller div:nth-child(4):after {
-  top: 72px;
-  left: 40px;
-}
-.lds-roller div:nth-child(5) {
-  animation-delay: -0.18s;
-}
-.lds-roller div:nth-child(5):after {
-  top: 71px;
-  left: 32px;
-}
-.lds-roller div:nth-child(6) {
-  animation-delay: -0.216s;
-}
-.lds-roller div:nth-child(6):after {
-  top: 68px;
-  left: 24px;
-}
-.lds-roller div:nth-child(7) {
-  animation-delay: -0.252s;
-}
-.lds-roller div:nth-child(7):after {
-  top: 63px;
-  left: 17px;
-}
-.lds-roller div:nth-child(8) {
-  animation-delay: -0.288s;
-}
-.lds-roller div:nth-child(8):after {
-  top: 56px;
-  left: 12px;
-}
-@keyframes lds-roller {
-  0% {
-    transform: rotate(0deg);
+@media (min-width: 576px) {
+  html {
+    font-size: 1.1rem;
   }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-// Button Switch Logout
-
-.custom-control-input:checked ~ .custom-control-label::before {
-  border-color: #0069d9;
-  background-color: #0069d9;
 }
 
 // Entete
@@ -192,6 +67,7 @@ html {
 .entete {
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .bg-entete {
@@ -228,6 +104,7 @@ html {
   width: 100%;
   height: 100%;
   background-color:rgba(0, 0, 0, .5);
+  z-index: 2;
 }
 
 .menu {
@@ -254,39 +131,48 @@ html {
   }
 }
 
-// My classes
+// Custom
 
-.pointer, .pointer * {
-  cursor: pointer;
+.my-container {
+  min-height: 100vh;
 }
 
-.py-responsive {
-  padding-top: 1.5rem !important;
-  padding-bottom: 1.5rem !important;
-}
-
-@include media-breakpoint-up(md) {
-  .py-responsive {
-    padding-top: 3rem !important;
-    padding-bottom: 3rem !important;
+@include media-breakpoint-up(sm) {
+  .my-container {
+    min-height: calc(100vh - 6rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    border-radius: 0.25rem !important;
   }
 }
 
-main {
-  min-height: 50vh;
+@include media-breakpoint-up(lg) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .container {
+    max-width: 720px;
+  }
 }
 
 .bg-landing {
   background-image: url(./images/frigo-min.png);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: auto 90%;;
   background-position: center;
+  min-height: 50vh;
 }
 
 @include media-breakpoint-up(lg) {
   .bg-landing {
     background-size: auto 90%;
   }
+}
+
+.pointer, .pointer * {
+  cursor: pointer;
 }
 
 .list-group-item {
@@ -317,4 +203,137 @@ main {
 
 .my-form:focus {
   outline: none;
+}
+
+// Button Switch Logout
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #0069d9;
+  background-color: #0069d9;
+}
+
+// Toastify
+
+.Toastify__toast-container {
+  width: auto;
+  max-width: 400px;
+  top: 1rem;
+}
+
+.Toastify__toast {
+  min-height: 50px;
+  padding: 0 45px 0 15px;
+  margin-bottom: 5px;
+}
+
+.Toastify__close-button {
+  position: absolute;
+  top: 0;
+  right: 7px;
+}
+
+.Toastify__toast-body {
+font-size: .9rem;
+padding: 0;
+}
+
+@media only screen and (max-width: 480px) {
+
+.Toastify__toast-container {
+  width: auto;
+  left: .5rem;
+  margin: 0;
+}
+
+.Toastify__toast-body {
+  font-size: 1rem;
+}
+
+}
+
+// Loader
+
+.lds-roller {
+display: inline-block;
+position: relative;
+width: 80px;
+height: 80px;
+}
+.lds-roller div {
+animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+content: " ";
+display: block;
+position: absolute;
+width: 7px;
+height: 7px;
+border-radius: 50%;
+background: #6c757d;
+margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+top: 63px;
+left: 63px;
+}
+.lds-roller div:nth-child(2) {
+animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+top: 68px;
+left: 56px;
+}
+.lds-roller div:nth-child(3) {
+animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+top: 71px;
+left: 48px;
+}
+.lds-roller div:nth-child(4) {
+animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+top: 72px;
+left: 40px;
+}
+.lds-roller div:nth-child(5) {
+animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+top: 71px;
+left: 32px;
+}
+.lds-roller div:nth-child(6) {
+animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+top: 68px;
+left: 24px;
+}
+.lds-roller div:nth-child(7) {
+animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+top: 63px;
+left: 17px;
+}
+.lds-roller div:nth-child(8) {
+animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+top: 56px;
+left: 12px;
+}
+@keyframes lds-roller {
+0% {
+  transform: rotate(0deg);
+}
+100% {
+  transform: rotate(360deg);
+}
 }

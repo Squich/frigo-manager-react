@@ -30,14 +30,14 @@ const Product = ({id, name, date, recipe, opened, indexFridge, showForm, deleteP
 
     return (
         <div className="d-flex justify-content-between">
-            <div>
+            <div className="d-flex align-items-center flex-wrap">
                 {smileyIcon}
                 <ReactTooltip id="smileyTooltip" place="top" effect="solid" eventOff="click" delayHide={1500} />
                 <span className="mr-3"><strong>{formatDate}</strong></span>
                 <span className="mr-3 pointer" data-for="frigoTooltip" data-tip={`Frigo ${fridgeName}`} data-event="click">{name}</span>
                 <ReactTooltip id="frigoTooltip" place="top" effect="solid" eventOff="click" delayHide={1500} />
             </div>
-            <div>
+            <div className="d-flex align-items-center flex-wrap">
                 {
                     recipe && (
                         <FaTags className="mr-3 pointer" color="#6c757d" data-for="recipeTooltip" data-tip={`Recette ${recipe}`} data-event="click" />

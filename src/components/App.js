@@ -73,21 +73,23 @@ const App = () => {
     <UserSessionContext.Provider value={UserSessionContextValue}>
       <IconContext.Provider value={{style:{verticalAlign:'middle'}}}>
         <Router basename={process.env.PUBLIC_URL}>
-          <div className="container py-responsive">
-            <div className="position-relative shadow rounded-lg overflow-hidden" id="app-container">
-                <Header />
-                <main className="row px-3 py-7 bg-white">
-                  <div className="col">
-                      <Switch>
-                        <Route exact path="/" component={Landing} />
-                        <Route path="/welcome" component={Welcome} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/signup" component={Signup} />
-                        <Route path="/forgetpassword" component={ForgetPassword} />
-                        <Route component={ErrorPage} />
-                      </Switch>
-                  </div>
-                </main>
+          <div className="container p-0 py-sm-7">
+            <div className="position-relative my-container d-flex flex-column justify-content-between overflow-hidden bg-white" id="app-container">
+                <div>
+                  <Header />
+                  <main className="row px-3 py-7">
+                    <div className="col">
+                        <Switch>
+                          <Route exact path="/" component={Landing} />
+                          <Route path="/welcome" component={Welcome} />
+                          <Route path="/login" component={Login} />
+                          <Route path="/signup" component={Signup} />
+                          <Route path="/forgetpassword" component={ForgetPassword} />
+                          <Route component={ErrorPage} />
+                        </Switch>
+                    </div>
+                  </main>
+                </div>
                 <Footer />
             </div>
           </div>
