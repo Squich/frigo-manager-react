@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/frigo-manager-react/static/css/main.edac677c.chunk.css",
-    "main.js": "/frigo-manager-react/static/js/main.0bffea51.chunk.js",
-    "main.js.map": "/frigo-manager-react/static/js/main.0bffea51.chunk.js.map",
+    "main.css": "/frigo-manager-react/static/css/main.013aa275.chunk.css",
+    "main.js": "/frigo-manager-react/static/js/main.6b01faaa.chunk.js",
+    "main.js.map": "/frigo-manager-react/static/js/main.6b01faaa.chunk.js.map",
     "runtime-main.js": "/frigo-manager-react/static/js/runtime-main.7e0dd15a.js",
     "runtime-main.js.map": "/frigo-manager-react/static/js/runtime-main.7e0dd15a.js.map",
     "static/css/2.82a37e40.chunk.css": "/frigo-manager-react/static/css/2.82a37e40.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.03634cf2.chunk.js.map": "/frigo-manager-react/static/js/3.03634cf2.chunk.js.map",
     "index.html": "/frigo-manager-react/index.html",
     "static/css/2.82a37e40.chunk.css.map": "/frigo-manager-react/static/css/2.82a37e40.chunk.css.map",
-    "static/css/main.edac677c.chunk.css.map": "/frigo-manager-react/static/css/main.edac677c.chunk.css.map",
+    "static/css/main.013aa275.chunk.css.map": "/frigo-manager-react/static/css/main.013aa275.chunk.css.map",
     "static/js/2.fc9f8f0f.chunk.js.LICENSE.txt": "/frigo-manager-react/static/js/2.fc9f8f0f.chunk.js.LICENSE.txt",
     "static/media/styles.scss": "/frigo-manager-react/static/media/frigo-min.3a2a08b8.png"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.7e0dd15a.js",
     "static/css/2.82a37e40.chunk.css",
     "static/js/2.fc9f8f0f.chunk.js",
-    "static/css/main.edac677c.chunk.css",
-    "static/js/main.0bffea51.chunk.js"
+    "static/css/main.013aa275.chunk.css",
+    "static/js/main.6b01faaa.chunk.js"
   ]
 }
